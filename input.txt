@@ -1,0 +1,70 @@
+// Variable Assignments
+a = 5
+b = 3
+c = a + b * 2
+
+// Arithmetic with all operators
+d = c * 4 - b / 3 + 10 % 4
+
+// If statement
+if ( c > 10 )
+{
+    d = c - 5
+}
+
+// If-Else statement
+if ( a > b )
+{
+    e = a - b
+}
+else
+{
+    e = b - a
+}
+
+// Relational and logical expressions
+if ( a > b && c < 20 )
+{
+    f = a + b
+}
+
+if ( a == 5 || b != 4 )
+{
+    g = a * b
+}
+
+// Logical NOT
+if ( !( a == b ) )
+{
+    h = a + 1
+}
+
+// Unary negation
+neg = -a
+result = -a + b * 2
+
+// While loop
+i = 0
+while ( i < 10 )
+{
+    i = i + 1
+}
+
+// For loop
+sum = 0
+for ( j = 0; j < 5; j = j + 1 )
+{
+    sum = sum + j
+}
+
+// Math functions
+p = 9
+q = sqrt(p)
+r = pow(p, 3)
+s = log(q) + sin(p)
+t = cos(r) * tan(s)
+u = abs(-a + q) / exp(2)
+
+// Combined expressions using function results
+v = sqrt(a * a + b * b)
+w = pow(sum, 2) - log(p) * 3

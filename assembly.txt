@@ -1,0 +1,286 @@
+  MOV R0, #5
+  MOV a, R0
+  MOV R1, #3
+  MOV b, R1
+  MOV R2, b
+  MOV R3, #2
+  MUL R4, R2, R3
+  MOV t1, R4
+  MOV R5, a
+  MOV R6, t1
+  ADD R7, R5, R6
+  MOV t2, R7
+  MOV R0, t2
+  MOV c, R0
+  MOV R1, c
+  MOV R2, #4
+  MUL R3, R1, R2
+  MOV t3, R3
+  MOV R4, b
+  MOV R5, #3
+  DIV R6, R4, R5
+  MOV t4, R6
+  MOV R7, t3
+  MOV R0, t4
+  SUB R1, R7, R0
+  MOV t5, R1
+  MOV R2, #10
+  MOV R3, #4
+  MOD R4, R2, R3
+  MOV t6, R4
+  MOV R5, t5
+  MOV R6, t6
+  ADD R7, R5, R6
+  MOV t7, R7
+  MOV R0, t7
+  MOV d, R0
+  MOV R1, c
+  MOV R2, #10
+  CMP_GT R3, R1, R2
+  MOV t8, R3
+  CMP t8, #0
+  JE L1
+  MOV R4, c
+  MOV R5, #5
+  SUB R6, R4, R5
+  MOV t9, R6
+  MOV R7, t9
+  MOV d, R7
+  JMP L2
+L1:
+L2:
+  MOV R0, a
+  MOV R1, b
+  CMP_GT R2, R0, R1
+  MOV t10, R2
+  CMP t10, #0
+  JE L3
+  MOV R3, a
+  MOV R4, b
+  SUB R5, R3, R4
+  MOV t11, R5
+  MOV R6, t11
+  MOV e, R6
+  JMP L4
+L3:
+  MOV R7, b
+  MOV R0, a
+  SUB R1, R7, R0
+  MOV t12, R1
+  MOV R2, t12
+  MOV e, R2
+L4:
+  MOV R3, a
+  MOV R4, b
+  CMP_GT R5, R3, R4
+  MOV t13, R5
+  MOV R6, c
+  MOV R7, #20
+  CMP_LT R0, R6, R7
+  MOV t14, R0
+  MOV R1, t13
+  MOV R2, t14
+  AND R3, R1, R2
+  MOV t15, R3
+  CMP t15, #0
+  JE L5
+  MOV R4, a
+  MOV R5, b
+  ADD R6, R4, R5
+  MOV t16, R6
+  MOV R7, t16
+  MOV f, R7
+  JMP L6
+L5:
+L6:
+  MOV R0, a
+  MOV R1, #5
+  CMP_EQ R2, R0, R1
+  MOV t17, R2
+  MOV R3, b
+  MOV R4, #4
+  CMP_NE R5, R3, R4
+  MOV t18, R5
+  MOV R6, t17
+  MOV R7, t18
+  OR R0, R6, R7
+  MOV t19, R0
+  CMP t19, #0
+  JE L7
+  MOV R1, a
+  MOV R2, b
+  MUL R3, R1, R2
+  MOV t20, R3
+  MOV R4, t20
+  MOV g, R4
+  JMP L8
+L7:
+L8:
+  MOV R5, a
+  MOV R6, b
+  CMP_EQ R7, R5, R6
+  MOV t21, R7
+  MOV R0, t21
+  NOT R0
+  MOV t22, R0
+  CMP t22, #0
+  JE L9
+  MOV R1, a
+  MOV R2, #1
+  ADD R3, R1, R2
+  MOV t23, R3
+  MOV R4, t23
+  MOV h, R4
+  JMP L10
+L9:
+L10:
+  MOV R5, a
+  NEG R5
+  MOV t24, R5
+  MOV R6, t24
+  MOV neg, R6
+  MOV R7, a
+  NEG R7
+  MOV t25, R7
+  MOV R0, b
+  MOV R1, #2
+  MUL R2, R0, R1
+  MOV t26, R2
+  MOV R3, t25
+  MOV R4, t26
+  ADD R5, R3, R4
+  MOV t27, R5
+  MOV R6, t27
+  MOV result, R6
+  MOV R7, #0
+  MOV i, R7
+L11:
+  MOV R0, i
+  MOV R1, #10
+  CMP_LT R2, R0, R1
+  MOV t28, R2
+  CMP t28, #0
+  JE L12
+  MOV R3, i
+  MOV R4, #1
+  ADD R5, R3, R4
+  MOV t29, R5
+  MOV R6, t29
+  MOV i, R6
+  JMP L11
+L12:
+  MOV R7, #0
+  MOV sum, R7
+  MOV R0, #0
+  MOV j, R0
+L13:
+  MOV R1, j
+  MOV R2, #5
+  CMP_LT R3, R1, R2
+  MOV t30, R3
+  CMP t30, #0
+  JE L14
+  MOV R4, j
+  MOV R5, #1
+  ADD R6, R4, R5
+  MOV t31, R6
+  MOV R7, sum
+  MOV R0, j
+  ADD R1, R7, R0
+  MOV t32, R1
+  MOV R2, t32
+  MOV sum, R2
+  MOV R3, t31
+  MOV j, R3
+  JMP L13
+L14:
+  MOV R4, #9
+  MOV p, R4
+  MOV R5, p
+  SQRT R5
+  MOV t33, R5
+  MOV R6, t33
+  MOV q, R6
+  MOV R7, p
+  MOV R0, #3
+  POW R7, R0
+  MOV t34, R7
+  MOV R1, t34
+  MOV r, R1
+  MOV R2, q
+  LOG R2
+  MOV t35, R2
+  MOV R3, p
+  SIN R3
+  MOV t36, R3
+  MOV R4, t35
+  MOV R5, t36
+  ADD R6, R4, R5
+  MOV t37, R6
+  MOV R7, t37
+  MOV s, R7
+  MOV R0, r
+  COS R0
+  MOV t38, R0
+  MOV R1, s
+  TAN R1
+  MOV t39, R1
+  MOV R2, t38
+  MOV R3, t39
+  MUL R4, R2, R3
+  MOV t40, R4
+  MOV R5, t40
+  MOV t, R5
+  MOV R6, a
+  NEG R6
+  MOV t41, R6
+  MOV R7, t41
+  MOV R0, q
+  ADD R1, R7, R0
+  MOV t42, R1
+  MOV R2, t42
+  ABS R2
+  MOV t43, R2
+  MOV R3, #2
+  EXP R3
+  MOV t44, R3
+  MOV R4, t43
+  MOV R5, t44
+  DIV R6, R4, R5
+  MOV t45, R6
+  MOV R7, t45
+  MOV u, R7
+  MOV R0, a
+  MOV R1, a
+  MUL R2, R0, R1
+  MOV t46, R2
+  MOV R3, b
+  MOV R4, b
+  MUL R5, R3, R4
+  MOV t47, R5
+  MOV R6, t46
+  MOV R7, t47
+  ADD R0, R6, R7
+  MOV t48, R0
+  MOV R1, t48
+  SQRT R1
+  MOV t49, R1
+  MOV R2, t49
+  MOV v, R2
+  MOV R3, sum
+  MOV R4, #2
+  POW R3, R4
+  MOV t50, R3
+  MOV R5, p
+  LOG R5
+  MOV t51, R5
+  MOV R6, t51
+  MOV R7, #3
+  MUL R0, R6, R7
+  MOV t52, R0
+  MOV R1, t50
+  MOV R2, t52
+  SUB R3, R1, R2
+  MOV t53, R3
+  MOV R4, t53
+  MOV w, R4
