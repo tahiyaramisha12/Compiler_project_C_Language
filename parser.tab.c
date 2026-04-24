@@ -83,18 +83,49 @@ FILE *asm_file;
 
 static int tc=0, lc=0, rc=0;
 
-char *nt(){ char *b=malloc(16); sprintf(b,"t%d",++tc); return b; }
-char *nl(){ char *b=malloc(16); sprintf(b,"L%d",++lc); return b; }
-char *nr(){ char *b=malloc(8);  sprintf(b,"R%d",rc++%8); return b; }
+char *nt(){ 
+    char *b=malloc(16); 
+    sprintf(b,"t%d",++tc); 
+    return b; 
+}
+char *nl(){ 
+    char *b=malloc(16); 
+    sprintf(b,"L%d",++lc); 
+    return b;
+}
+char *nr(){ 
+    char *b=malloc(8);  
+    sprintf(b,"R%d",rc++%8); 
+    return b; 
+}
 
-void et(const char *f,...){ va_list a; va_start(a,f); vfprintf(tac_file,f,a); va_end(a); fprintf(tac_file,"\n"); }
-void ea(const char *f,...){ va_list a; va_start(a,f); vfprintf(asm_file,f,a); va_end(a); fprintf(asm_file,"\n"); }
+void et(const char *f,...){
+    va_list a; 
+    va_start(a,f); 
+    vfprintf(tac_file,f,a); 
+    va_end(a); 
+    fprintf(tac_file,"\n"); 
+}
+void ea(const char *f,...){ 
+    va_list a; 
+    va_start(a,f); 
+    vfprintf(asm_file,f,a); 
+    va_end(a); 
+    fprintf(asm_file,"\n");
+}
 
-static char *stk[256]; static int top=0;
-void  psh(const char *s){ stk[top++]=strdup(s); }
-char *pop(){ return top>0?stk[--top]:strdup("ERR"); }
+static char *stk[256]; 
+static int top=0;
+void  psh(const char *s){ 
+    stk[top++]=strdup(s);
+}
+char *pop(){ 
+    return top>0?stk[--top]:strdup("ERR"); 
+}
 
-int isn(const char *s){ return s&&(s[0]=='-'||(s[0]>='0'&&s[0]<='9')); }
+int isn(const char *s){ 
+    return s&&(s[0]=='-'||(s[0]>='0'&&s[0]<='9')); 
+}
 
 void mv(const char *r,const char *v){
     if(isn(v)) ea("  MOV %s, #%s",r,v);
@@ -124,7 +155,9 @@ char *bop(const char *l,const char *op,const char *r){
     mv(r1,l); mv(r2,r);
     ea("  %s %s, %s, %s",opc(op),rd,r1,r2);
     ea("  MOV %s, %s",t,rd);
-    free(r1); free(r2); free(rd);
+    free(r1); 
+    free(r2); 
+    free(rd);
     return t;
 }
 
@@ -139,13 +172,15 @@ void asgn(const char *v,const char *val){
 char *fn1(const char *fn,const char *a){
     char *t=nt(),*r=nr();
     char up[16]; int i;
-    for(i=0;fn[i]&&i<15;i++) up[i]=(fn[i]>='a'&&fn[i]<='z')?fn[i]-32:fn[i];
+    for(i=0;fn[i]&&i<15;i++) 
+         up[i]=(fn[i]>='a'&&fn[i]<='z')?fn[i]-32:fn[i];
     up[i]=0;
     et("%s = %s(%s)",t,fn,a);
     mv(r,a);
     ea("  %s %s",up,r);
     ea("  MOV %s, %s",t,r);
-    free(r); return t;
+    free(r); 
+    return t;
 }
 
 char *fn2(const char *fn,const char *a,const char *b){
@@ -154,12 +189,14 @@ char *fn2(const char *fn,const char *a,const char *b){
     mv(r1,a); mv(r2,b);
     ea("  POW %s, %s",r1,r2);
     ea("  MOV %s, %s",t,r1);
-    free(r1); free(r2); return t;
+    free(r1); 
+    free(r2); 
+    return t;
 }
 
 
 /* Line 189 of yacc.c  */
-#line 163 "parser.tab.c"
+#line 200 "parser.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -233,12 +270,16 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 90 "parser.y"
- int iv; float fv; char *sv; 
+#line 127 "parser.y"
+ 
+    int iv; 
+    float fv; 
+    char *sv; 
+
 
 
 /* Line 214 of yacc.c  */
-#line 242 "parser.tab.c"
+#line 283 "parser.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -250,7 +291,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 254 "parser.tab.c"
+#line 295 "parser.tab.c"
 
 #ifdef short
 # undef short
@@ -559,12 +600,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   114,   114,   116,   116,   119,   120,   121,   122,   123,
-     126,   126,   129,   130,   135,   143,   134,   156,   162,   155,
-     181,   189,   180,   212,   213,   214,   223,   227,   228,   229,
-     230,   231,   232,   233,   237,   238,   239,   243,   244,   245,
-     246,   250,   251,   252,   253,   254,   255,   256,   257,   258,
-     259,   263,   272,   273,   274
+       0,   155,   155,   157,   157,   160,   161,   162,   163,   164,
+     167,   167,   170,   171,   176,   186,   175,   200,   206,   199,
+     230,   240,   229,   272,   273,   274,   285,   289,   290,   291,
+     292,   293,   294,   295,   299,   300,   301,   305,   306,   307,
+     308,   312,   313,   314,   315,   316,   317,   318,   319,   320,
+     321,   325,   336,   337,   338
 };
 #endif
 
@@ -1551,62 +1592,65 @@ yyreduce:
         case 5:
 
 /* Line 1455 of yacc.c  */
-#line 119 "parser.y"
+#line 160 "parser.y"
     { asgn((yyvsp[(1) - (4)].sv),(yyvsp[(3) - (4)].sv)); free((yyvsp[(1) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 120 "parser.y"
+#line 161 "parser.y"
     { asgn((yyvsp[(1) - (3)].sv),(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 129 "parser.y"
+#line 170 "parser.y"
     { char *l=pop(); et("%s:",l); ea("%s:",l); free(l); ;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 130 "parser.y"
+#line 171 "parser.y"
     { char *l=pop(); et("%s:",l); ea("%s:",l); free(l); ;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 135 "parser.y"
+#line 176 "parser.y"
     {
             char *l=nl();
             et("ifFalse %s goto %s",(yyvsp[(3) - (4)].sv),l);
             ea("  CMP %s, #0",(yyvsp[(3) - (4)].sv));
             ea("  JE %s",l);
-            psh(l); free((yyvsp[(3) - (4)].sv)); free(l);
+            psh(l); 
+            free((yyvsp[(3) - (4)].sv)); 
+            free(l);
         ;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 143 "parser.y"
+#line 186 "parser.y"
     {
             char *e=nl();
             et("goto %s",e);
             ea("  JMP %s",e);
             char *l=pop();
             et("%s:",l); ea("%s:",l);
-            psh(e); free(l);
+            psh(e); 
+            free(l);
         ;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 156 "parser.y"
+#line 200 "parser.y"
     {
             char *l=nl();
             et("%s:",l); ea("%s:",l);
@@ -1617,315 +1661,335 @@ yyreduce:
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 162 "parser.y"
+#line 206 "parser.y"
     {
             char *e=nl();
             et("ifFalse %s goto %s",(yyvsp[(4) - (5)].sv),e);
             ea("  CMP %s, #0",(yyvsp[(4) - (5)].sv));
             ea("  JE %s",e);
-            psh(e); free((yyvsp[(4) - (5)].sv)); free(e);
+            psh(e); 
+            free((yyvsp[(4) - (5)].sv)); 
+            free(e);
         ;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 170 "parser.y"
+#line 216 "parser.y"
     {
             char *e=pop();
             char *l=pop();
-            et("goto %s",l); ea("  JMP %s",l);
-            et("%s:",e);     ea("%s:",e);
-            free(e); free(l);
+            et("goto %s",l); 
+            ea("  JMP %s",l);
+            et("%s:",e);     
+            ea("%s:",e);
+            free(e); 
+            free(l);
         ;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 181 "parser.y"
+#line 230 "parser.y"
     {
             asgn((yyvsp[(3) - (6)].sv),(yyvsp[(5) - (6)].sv));
             char *l=nl();
             et("%s:",l); ea("%s:",l);
-            psh(l); psh((yyvsp[(3) - (6)].sv));
-            free((yyvsp[(5) - (6)].sv)); free(l);
+            psh(l); 
+            psh((yyvsp[(3) - (6)].sv));
+            free((yyvsp[(5) - (6)].sv)); 
+            free(l);
         ;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 189 "parser.y"
+#line 240 "parser.y"
     {
             char *e=nl();
             et("ifFalse %s goto %s",(yyvsp[(8) - (9)].sv),e);
             ea("  CMP %s, #0",(yyvsp[(8) - (9)].sv));
             ea("  JE %s",e);
-            psh(e); free((yyvsp[(8) - (9)].sv)); free(e);
+            psh(e); 
+            free((yyvsp[(8) - (9)].sv)); 
+            free(e);
         ;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 197 "parser.y"
+#line 250 "parser.y"
     {
             char *ie=strdup((yyvsp[(13) - (15)].sv));
             char *iv=strdup((yyvsp[(11) - (15)].sv));
             char *e=pop();
             char *lv=pop();
             char *ls=pop();
-            free((yyvsp[(11) - (15)].sv)); free((yyvsp[(13) - (15)].sv));
+            free((yyvsp[(11) - (15)].sv)); 
+            free((yyvsp[(13) - (15)].sv));
             asgn(iv,ie);
-            et("goto %s",ls); ea("  JMP %s",ls);
-            et("%s:",e);      ea("%s:",e);
-            free(ie); free(iv); free(e); free(lv); free(ls);
+            et("goto %s",ls); 
+            ea("  JMP %s",ls);
+            et("%s:",e);      
+            ea("%s:",e);
+            free(ie); 
+            free(iv); 
+            free(e); 
+            free(lv); 
+            free(ls);
         ;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 212 "parser.y"
+#line 272 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"&&",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 213 "parser.y"
+#line 273 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"||",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 215 "parser.y"
+#line 275 "parser.y"
     {
             char *t=nt(); char *r=nr();
             et("%s = !%s",t,(yyvsp[(2) - (2)].sv));
             ea("  MOV %s, %s",r,(yyvsp[(2) - (2)].sv));
             ea("  NOT %s",r);
             ea("  MOV %s, %s",t,r);
-            free(r); free((yyvsp[(2) - (2)].sv)); (yyval.sv)=t;
+            free(r); 
+            free((yyvsp[(2) - (2)].sv)); 
+            (yyval.sv)=t;
         ;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 223 "parser.y"
+#line 285 "parser.y"
     { (yyval.sv)=(yyvsp[(1) - (1)].sv); ;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 227 "parser.y"
+#line 289 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),">" ,(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 228 "parser.y"
+#line 290 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"<" ,(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 229 "parser.y"
+#line 291 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),">=",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 230 "parser.y"
+#line 292 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"<=",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 231 "parser.y"
+#line 293 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"==",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 232 "parser.y"
+#line 294 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"!=",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 233 "parser.y"
+#line 295 "parser.y"
     { (yyval.sv)=(yyvsp[(1) - (1)].sv); ;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 237 "parser.y"
+#line 299 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"+",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 238 "parser.y"
+#line 300 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"-",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 239 "parser.y"
+#line 301 "parser.y"
     { (yyval.sv)=(yyvsp[(1) - (1)].sv); ;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 243 "parser.y"
+#line 305 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"*",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 244 "parser.y"
+#line 306 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"/",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 245 "parser.y"
+#line 307 "parser.y"
     { (yyval.sv)=bop((yyvsp[(1) - (3)].sv),"%",(yyvsp[(3) - (3)].sv)); free((yyvsp[(1) - (3)].sv)); free((yyvsp[(3) - (3)].sv)); ;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 246 "parser.y"
+#line 308 "parser.y"
     { (yyval.sv)=(yyvsp[(1) - (1)].sv); ;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 250 "parser.y"
+#line 312 "parser.y"
     { (yyval.sv)=(yyvsp[(1) - (1)].sv); ;}
     break;
 
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 251 "parser.y"
+#line 313 "parser.y"
     { (yyval.sv)=(yyvsp[(2) - (3)].sv); ;}
     break;
 
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 252 "parser.y"
+#line 314 "parser.y"
     { (yyval.sv)=fn1("sqrt",(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 253 "parser.y"
+#line 315 "parser.y"
     { (yyval.sv)=fn1("log" ,(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 254 "parser.y"
+#line 316 "parser.y"
     { (yyval.sv)=fn1("exp" ,(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 255 "parser.y"
+#line 317 "parser.y"
     { (yyval.sv)=fn1("sin" ,(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 256 "parser.y"
+#line 318 "parser.y"
     { (yyval.sv)=fn1("cos" ,(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 257 "parser.y"
+#line 319 "parser.y"
     { (yyval.sv)=fn1("tan" ,(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 258 "parser.y"
+#line 320 "parser.y"
     { (yyval.sv)=fn1("abs" ,(yyvsp[(3) - (4)].sv)); free((yyvsp[(3) - (4)].sv)); ;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 259 "parser.y"
+#line 321 "parser.y"
     { (yyval.sv)=fn2("pow",(yyvsp[(3) - (6)].sv),(yyvsp[(5) - (6)].sv)); free((yyvsp[(3) - (6)].sv)); free((yyvsp[(5) - (6)].sv)); ;}
     break;
 
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 264 "parser.y"
+#line 326 "parser.y"
     {
             char *t=nt(); char *r=nr();
             et("%s = -%s",t,(yyvsp[(2) - (2)].sv));
             ea("  MOV %s, %s",r,(yyvsp[(2) - (2)].sv));
             ea("  NEG %s",r);
             ea("  MOV %s, %s",t,r);
-            free(r); free((yyvsp[(2) - (2)].sv)); (yyval.sv)=t;
+            free(r); 
+            free((yyvsp[(2) - (2)].sv)); 
+            (yyval.sv)=t;
         ;}
     break;
 
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 272 "parser.y"
+#line 336 "parser.y"
     { char *b=malloc(32); sprintf(b,"%d",(yyvsp[(1) - (1)].iv));   (yyval.sv)=b; ;}
     break;
 
   case 53:
 
 /* Line 1455 of yacc.c  */
-#line 273 "parser.y"
+#line 337 "parser.y"
     { char *b=malloc(32); sprintf(b,"%.6g",(yyvsp[(1) - (1)].fv)); (yyval.sv)=b; ;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 274 "parser.y"
+#line 338 "parser.y"
     { (yyval.sv)=(yyvsp[(1) - (1)].sv); ;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1929 "parser.tab.c"
+#line 1993 "parser.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2137,21 +2201,30 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 277 "parser.y"
+#line 341 "parser.y"
 
 
-void yyerror(const char *s){ fprintf(stderr,"Error: %s\n",s); }
+void yyerror(const char *s){ 
+    fprintf(stderr,"Error: %s\n",s); 
+}
 
 int main(int argc,char *argv[]){
     extern FILE *yyin;
-    if(argc>1){ yyin=fopen(argv[1],"r"); if(!yyin){perror(argv[1]);return 1;} }
+    if(argc>1){ 
+        yyin=fopen(argv[1],"r"); 
+        if(!yyin){
+            perror(argv[1]);
+            return 1;
+        } 
+    }
     tac_file=fopen("tac.txt","w");
     asm_file=fopen("assembly.txt","w");
     fprintf(tac_file,"");
     fprintf(asm_file,"");
     yyparse();
-    fclose(tac_file); fclose(asm_file);
+    fclose(tac_file); 
+    fclose(asm_file);
     if(argc>1) fclose(yyin);
-    printf("Done. tac.txt + assembly.txt written.\n");
+    printf("Done\n");
     return 0;
 }
