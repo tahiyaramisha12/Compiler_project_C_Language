@@ -346,12 +346,10 @@ void yyerror(const char *s){
 
 int main(int argc,char *argv[]){
     extern FILE *yyin;
-    if(argc>1){ 
-        yyin=fopen(argv[1],"r"); 
-        if(!yyin){
-            perror(argv[1]);
-            return 1;
-        } 
+    yyin = fopen("input.txt", "r"); 
+    if (!yyin) { 
+        printf("Error opening input.txt\n"); 
+        return 1; 
     }
     tac_file=fopen("tac.txt","w");
     asm_file=fopen("assembly.txt","w");
@@ -360,7 +358,7 @@ int main(int argc,char *argv[]){
     yyparse();
     fclose(tac_file); 
     fclose(asm_file);
-    if(argc>1) fclose(yyin);
+    fclose(yyin);
     printf("Done\n");
     return 0;
 }
